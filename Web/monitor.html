@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URBAN AREA MONITORING SYSTEM</title>
+    <link rel="icon" type="image/x-icon" href="./image/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <p><a href="./index.html" class="circle"><i class="fa-solid fa-house"></i></a></p>
+        <a href="./index.html" class="head">HOME</a>
+        <a href="./monitor.html" class="head">LOCATIONS MONITORING</a>
+        <a href="" class="head">PRODUCTS</a>
+        <a href="" class="head">SERVICES</a>
+        <a href="" class="head">CONTACTS</a>
+        <p>
+          <a class="head btn" id="login">
+            <i class="fa-solid fa-user" style="margin-right: 15px;"></i>
+            LOGIN
+          </a>
+        </p>
+    </div>
+
+
+    
+    <div class="realtime_data">
+        <h3 id="time"></h3>
+    </div>
+
+
+
+    <div class="container">
+        <div class="area" id="area1">
+            <div class="location">
+                <h3>Location 1</h3>               
+            </div>
+            <div class="box boxTemp">
+                <h5>Temperature <i class="fa-sharp fa-solid fa-temperature-high"></i></h5>
+                <div class="value">
+                    <h5 id="temp1"></h5>
+                    <h5>°C</h5>
+                </div>
+            </div>
+            <div class="box boxHumi">
+                <h5>Humidity <i class="fa-solid fa-droplet"></i></h5>
+                <div class="value">
+                    <h5 id="humi1"></h5>
+                    <h5>%</h5>
+                </div>
+            </div>
+            <div class="box boxGas">
+                <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
+                <div class="value">
+                    <h5 id="gas1"></h5>
+                </div>
+            </div>
+            <div class="box boxFlame">
+                <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
+                <div class="value">
+                    <h5 id="flame1"></h5>
+                </div>
+            </div>         
+        </div>
+
+        <div class="area" id="area2">
+            <div class="location">
+                <h3>Location 2</h3>               
+            </div>
+            <div class="box boxTemp">
+                <h5>Temperature <i class="fa-sharp fa-solid fa-temperature-high"></i></h5>
+                <div class="value">
+                    <h5 id="temp2"></h5>
+                    <h5>°C</h5>
+                </div>
+            </div>
+            <div class="box boxHumi">
+                <h5>Humidity <i class="fa-solid fa-droplet"></i></h5>
+                <div class="value">
+                    <h5 id="humi2"></h5>
+                    <h5>%</h5>
+                </div>
+            </div>
+            <div class="box boxGas">
+                <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
+                <div class="value">
+                    <h5 id="gas2"></h5>
+                </div>
+            </div>
+            <div class="box boxFlame">
+                <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
+                <div class="value">
+                    <h5 id="flame2"></h5>
+                </div>
+            </div>         
+        </div>
+
+        <div class="area" id="area3">
+            <div class="location">
+                <h3>Location 3</h3>               
+            </div>
+            <div class="box boxTemp">
+                <h5>Temperature <i class="fa-sharp fa-solid fa-temperature-high"></i></h5>
+                <div class="value">
+                    <h5 id="temp3"></h5>
+                    <h5>°C</h5>
+                </div>
+            </div>
+            <div class="box boxHumi">
+                <h5>Humidity <i class="fa-solid fa-droplet"></i></h5>
+                <div class="value">
+                    <h5 id="humi3"></h5>
+                    <h5>%</h5>
+                </div>
+            </div>
+            <div class="box boxGas">
+                <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
+                <div class="value">
+                    <h5 id="gas3"></h5>
+                </div>
+            </div>
+            <div class="box boxFlame">
+                <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
+                <div class="value">
+                    <h5 id="flame3"></h5>
+                </div>
+            </div>         
+        </div>
+
+        <div class="area" id="area4">
+            <div class="location">
+                <h3>Location 4</h3>               
+            </div>
+            <div class="box boxTemp">
+                <h5>Temperature <i class="fa-sharp fa-solid fa-temperature-high"></i></h5>
+                <div class="value">
+                    <h5 id="temp4"></h5>
+                    <h5>°C</h5>
+                </div>
+            </div>
+            <div class="box boxHumi">
+                <h5>Humidity <i class="fa-solid fa-droplet"></i></h5>
+                <div class="value">
+                    <h5 id="humi4"></h5>
+                    <h5>%</h5>
+                </div>
+            </div>
+            <div class="box boxGas">
+                <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
+                <div class="value">
+                    <h5 id="gas4"></h5>
+                </div>
+            </div>
+            <div class="box boxFlame">
+                <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
+                <div class="value">
+                    <h5 id="flame4"></h5>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+
+  
+    <div class="footer">
+        <div class="icon">
+            <a href="#" class="circle"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="circle"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="circle"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="circle"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footerTitle">
+            <a href="#">Contact Us</a>
+            <a href="#">FAQs</a>
+            <a href="#">Careers</a>
+            <a href="#">Modern Slavery Act</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookies Policy</a>
+            <a href="#">Term & Conditions</a>
+        </div>
+        <p>© 2023 UrbanAreaMonitoringSystem. All rights reserved. No part of this site may be reproduced without our written permission.</p>
+    </div>
+
+    
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!--Remember to add this ...database line in your code unless it will not work -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <script src="./main.js"></script>
+</body>
+</html>
