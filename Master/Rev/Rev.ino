@@ -1,4 +1,9 @@
-ó 
+
+#include <FirebaseESP8266.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+
+
 #include "Arduino.h"
 #include "LoRa_E32.h"
 #include "DHT.h"
@@ -7,19 +12,11 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 
-//#include <Firebase.h>
-//#include "ESP8266Firebase.h"
-#include <FirebaseESP8266.h>
-#include <ESP8266WiFi.h>
-//#include <WiFi.h>
-//#include <WiFiUdp.h>
+
 
 
 const char* ssid ="Lau 1_2";
 const char* pass ="A1234567";
-
-//#define WIFI_SSID "DANH" // tên wifi 
-//#define WIFI_PASSWORD "20071965" // password wifi 
 
 // Insert Firebase project API Key
 #define FIREBASE_HOST "https://datn-lora-default-rtdb.firebaseio.com/"
@@ -85,11 +82,10 @@ struct Message
 int isACK = 0;
 String temp_,humi_,gas_,flame_;
 int complete=0;
-
+    
 // Initialize WiFi
 void initWiFi() {
   WiFi.begin(ssid, pass);
-//  WiFi.begin (WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to WiFi ..");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print('.');
@@ -107,9 +103,9 @@ void setup()
   tft.fillScreen(BLACK);                 //background
   LCD_Init();
   
-  initWiFi();
-  Firebase.begin(FIREBASE_HOST,FIREBASE_AUTH);
-  Firebase.reconnectWiFi(true);
+  //initWiFi();
+  //Firebase.begin(FIREBASE_HOST,FIREBASE_AUTH);
+  //Firebase.reconnectWiFi(true);
 }
 
 
@@ -198,24 +194,33 @@ void RevMess() {
     humi_ = String(humi);
     gas_  = String(gas);
     flame_= String(flame);
-  
-    if (rxMess.ID == 1)    
+  String id="";
+    if (rxMess.ID == 1)
+    {    
       updateValue(32); 
+       id = "Location 1";
+    }
     else if (rxMess.ID == 2)
+    {
       updateValue(64);  
+       id = "Location 2";
+    }
     else if (rxMess.ID == 3)
-      updateValue(96);      
+    {
+      updateValue(96);     
+       id = "Location 3";
+    } 
     else if (rxMess.ID == 4)
-      updateValue(128); 
-
-    String id = String(rxMess.ID);
-
-
-    Firebase.setInt(fbdb,"/temp",temp);
-    Firebase.setInt(fbdb,"/humi",humi);
-    Firebase.setInt(fbdb,"/gas",gas);
-    Firebase.setInt(fbdb,"/flame",flame);
+    {
+      updateValue(128);
+       id = "Location 4";
+    }
     
+//    Firebase.setInt(fbdb, id + "/temp",temp_.toInt());
+//    Firebase.setInt(fbdb, id + "/humi",humi_.toInt());
+//    Firebase.setInt(fbdb, id + "/gas",gas_.toInt());
+//    Firebase.setInt(fbdb, id + "/flame",flame_.toInt());
+//    delay(200);
     free(rsc.data);
 
   }
@@ -271,12 +276,18 @@ void clearValue(String text,int x, int y){
   tft.setTextSize(1);
   tft.print(text);
 }
-  
+
 void updateValue(int x) {
   clearValue( temp_, x+5, 25+7 );
   clearValue( humi_, x+5, 50+7 );
   clearValue(  gas_, x+5, 75+7 );
   clearValue(flame_, x+5, 100+7);
+  
+  clearValue("  ", x+15, 25+7 );
+  clearValue("  ", x+15, 50+7 );
+  clearValue("  ", x+15, 75+7 );
+  clearValue("  ", x+15, 100+7);
+  
   printValue( temp_, x+5, 25+7 );
   printValue( humi_, x+5, 50+7 );
   printValue(  gas_, x+5, 75+7 );
