@@ -5,12 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URBAN AREA MONITORING SYSTEM</title>
-    <link rel="icon" type="image/x-icon" href="./image/logo.png">
+    <link rel="icon" type="image/x-icon" href="./assets/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="style.css">    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 </head>
 <body>
+    <div id="toast"></div>
+
+
+
+    <audio src="./assets/alarm.mp3" id="alarm"></audio>
+
+
+
     <div class="header">
         <p><a href="./index.html" class="circle"><i class="fa-solid fa-house"></i></a></p>
         <a href="./index.html" class="head">HOME</a>
@@ -57,9 +66,10 @@
                 <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
                 <div class="value">
                     <h5 id="gas1"></h5>
+                    <h5>ppm</h5>
                 </div>
             </div>
-            <div class="box boxFlame">
+            <div class="box" id="boxFlame1">
                 <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
                 <div class="value">
                     <h5 id="flame1"></h5>
@@ -89,9 +99,10 @@
                 <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
                 <div class="value">
                     <h5 id="gas2"></h5>
+                    <h5>ppm</h5>
                 </div>
             </div>
-            <div class="box boxFlame">
+            <div class="box" id="boxFlame2">
                 <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
                 <div class="value">
                     <h5 id="flame2"></h5>
@@ -121,9 +132,10 @@
                 <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
                 <div class="value">
                     <h5 id="gas3"></h5>
+                    <h5>ppm</h5>
                 </div>
             </div>
-            <div class="box boxFlame">
+            <div class="box" id="boxFlame3">
                 <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
                 <div class="value">
                     <h5 id="flame3"></h5>
@@ -153,9 +165,10 @@
                 <h5>Gas concentration <i class="fa-sharp fa-solid fa-fire-extinguisher"></i></h5>
                 <div class="value">
                     <h5 id="gas4"></h5>
+                    <h5>ppm</h5>
                 </div>
             </div>
-            <div class="box boxFlame">
+            <div class="box" id="boxFlame4">
                 <h5>Flame detection <i class="fa-solid fa-fire"></i></h5>
                 <div class="value">
                     <h5 id="flame4"></h5>
