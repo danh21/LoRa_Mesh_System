@@ -1,3 +1,4 @@
+/* ===================== Init ===================== */
 * {
     padding: 0;
     margin: 0;
@@ -7,31 +8,11 @@
 html {
     --mainColor: rgb(0,160,233);
     --warningColor: #e83232;
-    background-color: #f4f4f5;
-}
-
-body > div {
-    margin: auto;
-  }
-
-.circle {
-    height: 40px;
-    width: 40px;
-    margin-left: 25px;
-    border-radius: 2rem;
-    border: 1px solid white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--mainColor);
-    background-color: white;
-}
-.circle:hover {
-    opacity: 0.6;
 }
 
 
 
+/* ====================== Header ==================== */
 .header {
     height: 80px;
     display: flex;
@@ -64,6 +45,22 @@ body > div {
     width: 100%;
 }
 
+.circle {
+    height: 40px;
+    width: 40px;
+    margin-left: 25px;
+    border-radius: 2rem;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--mainColor);
+    background-color: white;
+}
+.circle:hover {
+    opacity: 0.6;
+}
+
 .btn {
     height: 40px;
     width: 120px;
@@ -87,33 +84,37 @@ body > div {
 
 
 
+/* ======================== Home ====================== */
 .containerHome {
     display: flex;
     width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 2rem;
 }
 
 .containerHome .overview {
-    width: 50%;
+    width: 60%;
     margin-left: 100px;
-    margin-right: 150px;
     align-items: center;
 }
-
-.containerHome img {
-    height: 300px;
-    width: 300px;
-    margin-left: 100px;
-}
-
 .overview h2 {
     color: var(--mainColor);
     font-weight: 700;
 }
+.overview .desc {
+    font-size: 1.3rem;
+    align-content: center;
+}
+
+.containerHome img {
+    height: 17rem;
+    width: 18rem;
+    margin-left: 9rem;
+    margin-top: 5rem;
+}
 
 
 
+/* ===================== Realtime =================== */
 .realtime_data {
    height: 7rem;
    width: 80%;
@@ -130,6 +131,7 @@ body > div {
 
 
 
+/* ===================== Monitor =================== */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -162,7 +164,7 @@ body > div {
     text-align: center;
 }
 
-.box {
+.area .box {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -203,46 +205,41 @@ body > div {
 
 
 
-.footer {
-    height: 200px;
-    background-color: var(--mainColor);
-    font-size: 1.2rem;
-    text-decoration: none;
-    width: 100%;
-}
-
-.icon {
-    padding-top: 25px;
+/* ====================== Footer ===================== */
+.footer .box-container {
+    height: 14.2rem;
     display: flex;
-    justify-content: center; 
-}
-.icon a, .footerTitle a {
-    text-decoration: none;
-}
-
-.footerTitle {
-    display: flex;
+    flex-wrap: wrap;
+    gap: 15rem;
     justify-content: center;
-}
-
-.footerTitle a {
-    margin-top: 25px;
+    background-color: var(--mainColor);
     color: white;
-    margin-left: 40px;
-}
-.footerTitle a:hover {
-    color: gray;
 }
 
-.footer p {
+.footer .box-container .box h3 {
+    margin-top: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.footer .box-container .box p {
+    font-size: 1.3rem;
+}
+
+.footer .box-container .box p a {
     color: white;
-    margin: 20px 0;
-    text-align: center;
+}
+.footer .box-container .box a:hover {
+    color: #666;
+}
+
+.footer .box-container .box p i {
+    padding: .5rem .5rem;
 }
 
 
 
-/* ======= Toast message ======== */
+/* ===================== Toast message ================ */
 #toast {
     position: fixed;
     top: 32px;
