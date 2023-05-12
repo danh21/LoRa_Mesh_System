@@ -19,7 +19,7 @@ var database = firebase.database();
 
 
 /* --------------------------- DECLARE FUNCTIONS ------------------------------- */
-function showWarningToast(loc, duration) {
+function showWarningToast(slave, duration) {
     const main = document.getElementById("toast");
     if (main) {
         const toast = document.createElement("div");
@@ -46,7 +46,7 @@ function showWarningToast(loc, duration) {
                 <i class="fas fa-exclamation-circle"></i>
             </div>
             <div class="toast__body">
-                <h3 class="toast__title">Warning from ${loc}</h3>
+                <h3 class="toast__title">Warning from ${slave}</h3>
                 <p class="toast__msg">There is a high risk of fire !!!</p>
             </div>
             <div class="toast__close">
@@ -57,19 +57,19 @@ function showWarningToast(loc, duration) {
     }
 }
 
-function checkValue(loc, tempVal, flameVal, gasVal) 
+function checkValue(slave, tempVal, flameVal, gasVal) 
 {
-    if (tempVal >= 100 && flameVal == 0 && gasVal >= 400) {
-        showWarningToast(loc, 10000);
+    if (tempVal >= 60 && flameVal == 0 && gasVal >= 400) {
+        showWarningToast(slave, 10000);
         audio.play();
     }
 }
 
-function updateValue(loc, flame, gas, humi, temp, boxFlame)
+function updateValue(slave, flame, gas, humi, temp, boxFlame)
 {
     var flameVal, gasVal, tempVal, humiVal;
 
-    database.ref("/" + loc + "/flame").on("value", function(snapshot) {
+    database.ref("/" + slave + "/flame").on("value", function(snapshot) {
         if (snapshot.exists()) {
             flameVal = snapshot.val();
             flame.innerHTML = flameVal;
@@ -81,30 +81,30 @@ function updateValue(loc, flame, gas, humi, temp, boxFlame)
                 boxFlame.classList.remove("boxFlameWarning");
                 boxFlame.classList.add("boxFlame");
             }
-            checkValue(loc, tempVal, flameVal, gasVal);
+            checkValue(slave, tempVal, flameVal, gasVal);
         }    
     });
 
-    database.ref("/" + loc + "/gas").on("value", function(snapshot) {
+    database.ref("/" + slave + "/gas").on("value", function(snapshot) {
         if (snapshot.exists()) {
             gasVal = snapshot.val();
             gas.innerHTML = gasVal;
-            checkValue(loc, tempVal, flameVal, gasVal);
+            checkValue(slave, tempVal, flameVal, gasVal);
         }
     });
 
-    database.ref("/" + loc + "/humi").on("value", function(snapshot) {
+    database.ref("/" + slave + "/humi").on("value", function(snapshot) {
         if (snapshot.exists()) {
             humiVal = snapshot.val();
             humi.innerHTML = humiVal;
         }
     });
 
-    database.ref("/" + loc + "/temp").on("value", function(snapshot) {
+    database.ref("/" + slave + "/temp").on("value", function(snapshot) {
         if (snapshot.exists()) {
             tempVal = snapshot.val();
             temp.innerHTML = tempVal;
-            checkValue(loc, tempVal, flameVal, gasVal);
+            checkValue(slave, tempVal, flameVal, gasVal);
         }
     });
 } 
@@ -117,28 +117,28 @@ function showTime(time) {
 
 
 /* --------------------------- VARIABLES ------------------------------- */
-var loc1 = "Location 1"
+var slave1 = "Slave 1"
 var flame1 = document.getElementById("flame1");
 var gas1 = document.getElementById("gas1");
 var humi1 = document.getElementById("humi1");
 var temp1 = document.getElementById("temp1");
 var boxFlame1 = document.getElementById("boxFlame1");
 
-var loc2 = "Location 2"
+var slave2 = "Slave 2"
 var flame2 = document.getElementById("flame2");
 var gas2 = document.getElementById("gas2");
 var humi2 = document.getElementById("humi2");
 var temp2 = document.getElementById("temp2");
 var boxFlame2 = document.getElementById("boxFlame2");
 
-var loc3 = "Location 3"
+var slave3 = "Slave 3"
 var flame3 = document.getElementById("flame3");
 var gas3 = document.getElementById("gas3");
 var humi3 = document.getElementById("humi3");
 var temp3 = document.getElementById("temp3");
 var boxFlame3 = document.getElementById("boxFlame3");
 
-var loc4 = "Location 4";
+var slave4 = "Slave 4";
 var flame4 = document.getElementById("flame4");
 var gas4 = document.getElementById("gas4");
 var humi4 = document.getElementById("humi4");
@@ -152,9 +152,9 @@ var audio = document.getElementById("alarm");
 
 
 /* --------------------------- CALL FUNCTIONS ------------------------------- */
-updateValue(loc1, flame1, gas1, humi1, temp1, boxFlame1);
-updateValue(loc2, flame2, gas2, humi2, temp2, boxFlame2);
-updateValue(loc3, flame3, gas3, humi3, temp3, boxFlame3);
-updateValue(loc4, flame4, gas4, humi4, temp4, boxFlame4);
+updateValue(slave1, flame1, gas1, humi1, temp1, boxFlame1);
+updateValue(slave2, flame2, gas2, humi2, temp2, boxFlame2);
+updateValue(slave3, flame3, gas3, humi3, temp3, boxFlame3);
+updateValue(slave4, flame4, gas4, humi4, temp4, boxFlame4);
 
 setInterval(showTime, 1000, realtime);
