@@ -109,6 +109,14 @@ function updateValue(slave, flame, gas, humi, temp, boxFlame)
     });
 } 
 
+function updateLoc(loc, slave) {
+    database.ref("/Location/" + slave).on("value", function(snapshot) {
+        if (snapshot.exists()) {
+            loc.innerHTML = snapshot.val();;
+        }
+    });
+}
+
 function showTime(time) {
     var d = new Date();
     time.innerHTML = d.toLocaleTimeString();
@@ -118,6 +126,7 @@ function showTime(time) {
 
 /* --------------------------- VARIABLES ------------------------------- */
 var slave1 = "Slave 1"
+var loc1 = document.getElementById("loc1");
 var flame1 = document.getElementById("flame1");
 var gas1 = document.getElementById("gas1");
 var humi1 = document.getElementById("humi1");
@@ -125,6 +134,7 @@ var temp1 = document.getElementById("temp1");
 var boxFlame1 = document.getElementById("boxFlame1");
 
 var slave2 = "Slave 2"
+var loc2 = document.getElementById("loc2");
 var flame2 = document.getElementById("flame2");
 var gas2 = document.getElementById("gas2");
 var humi2 = document.getElementById("humi2");
@@ -132,6 +142,7 @@ var temp2 = document.getElementById("temp2");
 var boxFlame2 = document.getElementById("boxFlame2");
 
 var slave3 = "Slave 3"
+var loc3 = document.getElementById("loc3");
 var flame3 = document.getElementById("flame3");
 var gas3 = document.getElementById("gas3");
 var humi3 = document.getElementById("humi3");
@@ -139,6 +150,7 @@ var temp3 = document.getElementById("temp3");
 var boxFlame3 = document.getElementById("boxFlame3");
 
 var slave4 = "Slave 4";
+var loc4 = document.getElementById("loc4");
 var flame4 = document.getElementById("flame4");
 var gas4 = document.getElementById("gas4");
 var humi4 = document.getElementById("humi4");
@@ -158,3 +170,8 @@ updateValue(slave3, flame3, gas3, humi3, temp3, boxFlame3);
 updateValue(slave4, flame4, gas4, humi4, temp4, boxFlame4);
 
 setInterval(showTime, 1000, realtime);
+
+updateLoc(loc1, slave1);
+updateLoc(loc2, slave2);
+updateLoc(loc3, slave3);
+updateLoc(loc4, slave4);
