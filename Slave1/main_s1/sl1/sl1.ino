@@ -111,9 +111,6 @@ void RevRequest(){
             RevMess();
             delay(10);  
           }
-//          while(runEvery(40000) == 0) {
-//            RevMess();
-//          }
         }
       } 
     }

@@ -63,7 +63,6 @@ void loop() {
 
 
 void handshaking() {
-  Serial.println("Start handshaking");
   while(runEvery(30000) == 0) {
     if (e32ttl.available() > 1) {
       ResponseStructContainer rsc = e32ttl.receiveMessage(sizeof(Message));
@@ -74,14 +73,12 @@ void handshaking() {
       }    
       free(rsc.data);
     }
-  } 
-  Serial.println("End handshaking");     
+  }      
 }
 
 
 
 void RevRequest(){
-  //Serial.print("Start receiving request ... ");
   if (e32ttl.available() > 1) {
     ResponseStructContainer rsc = e32ttl.receiveMessage(sizeof(Message));
     struct Message rxMess = *(Message*)rsc.data;
@@ -103,14 +100,11 @@ void RevRequest(){
       readSensors();
       delay(500);
       ResponseStatus rs = e32ttl.sendFixedMessage(addhOfFather, addlOfFather, 0x03, &message, sizeof(Message));
-
+      rs = e32ttl.sendFixedMessage(addhOfFather, addlOfFather, 0x03, &message, sizeof(Message));
       Serial.println("--");
       for (int i = 1; i <= 4; i++) {
         if ( (message.connectingToMaster[i-1] == 0) && (message.ID != i) && (idOfFather != i) ) {
           ResponseStatus rs1 = e32ttl.sendFixedMessage(0x00, i+1, 0x03, &message, sizeof(Message));
-//          while(runEvery(40000) == 0) {
-//            RevMess();
-//          }
           int cnt=0;
           while (cnt != 3000) {
             cnt++;

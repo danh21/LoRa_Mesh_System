@@ -3,7 +3,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-
 #include "Arduino.h"
 #include "LoRa_E32.h"
 #include "DHT.h"
@@ -11,8 +10,6 @@
 #include <string.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
-
-
 
 
 const char* ssid ="Lau 1_2";
@@ -36,8 +33,6 @@ void handshaking();
 void RevACK();
 void RevMess();
 boolean runEvery(unsigned long interval);
-
-
 
 //------LCD TFT------ESP8266--------------------
 #define TFT_CS         16   //D0
@@ -82,7 +77,11 @@ struct Message
 int isACK = 0;
 String temp_,humi_,gas_,flame_;
 int complete=0;
-    
+
+int sl3=0, sl4=0;
+
+
+
 // Initialize WiFi
 void initWiFi() {
   WiFi.begin(ssid, pass);
@@ -103,9 +102,9 @@ void setup()
   tft.fillScreen(BLACK);                 //background
   LCD_Init();
   
-  //initWiFi();
-  //Firebase.begin(FIREBASE_HOST,FIREBASE_AUTH);
-  //Firebase.reconnectWiFi(true);
+  initWiFi();
+  Firebase.begin(FIREBASE_HOST,FIREBASE_AUTH);
+  Firebase.reconnectWiFi(true);
 }
 
 
@@ -121,23 +120,10 @@ void loop()
     for (int i = 1; i <= 4; i++) {
       if (message.connectingToMaster[i-1] == 1) {
         ResponseStatus rs = e32ttl.sendFixedMessage(0x00, i+1, 0x03, &message, sizeof(Message));  //send data request package 
-        while(runEvery(80000) == 0) {
+        while(runEvery(60000) == 0) {
           RevMess();
         }
       }
-      /*
-      else
-      {
-        ResponseStatus rs = e32ttl.sendFixedMessage(0x00, i+1, 0x03, &message, sizeof(Message));    
-        while(runEvery(10000) == 0) {
-          RevACK();
-          if (isACK) {
-            isACK = 0;
-            break;
-          }
-        }
-      }
-      */ 
     }
   } 
 }
@@ -198,29 +184,29 @@ void RevMess() {
     if (rxMess.ID == 1)
     {    
       updateValue(32); 
-       id = "Location 1";
+       id = "Slave 1";
     }
     else if (rxMess.ID == 2)
     {
       updateValue(64);  
-       id = "Location 2";
+       id = "Slave 2";
     }
     else if (rxMess.ID == 3)
     {
-      updateValue(96);     
-       id = "Location 3";
+      updateValue(96);    
+       id = "Slave 3";
     } 
     else if (rxMess.ID == 4)
     {
       updateValue(128);
-       id = "Location 4";
+       id = "Slave 4";
     }
     
-//    Firebase.setInt(fbdb, id + "/temp",temp_.toInt());
-//    Firebase.setInt(fbdb, id + "/humi",humi_.toInt());
-//    Firebase.setInt(fbdb, id + "/gas",gas_.toInt());
-//    Firebase.setInt(fbdb, id + "/flame",flame_.toInt());
-//    delay(200);
+    Firebase.setInt(fbdb, id + "/temp",temp_.toInt());
+    Firebase.setInt(fbdb, id + "/humi",humi_.toInt());
+    Firebase.setInt(fbdb, id + "/gas",gas_.toInt());
+    Firebase.setInt(fbdb, id + "/flame",flame_.toInt());
+    delay(200);
     free(rsc.data);
 
   }
